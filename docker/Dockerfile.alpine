@@ -13,7 +13,7 @@ RUN cd /usr/src && \
     tar -zxC /usr/src -f v${MODULE_VERSION}.tar.gz && \
     cd /usr/src && \
     mv ${MODULE_NAME}-${MODULE_VERSION}/ ${MODULE_NAME} && \
-    git clone https://github.com/libinjection/libinjection.git ${MODULE_NAME}/inc/libinjection && \
+    git clone https://github.com/nginx-with-docker/module-deps-libinjection.git ${MODULE_NAME}/inc/libinjection && \
     cd ${MODULE_NAME}/inc/libinjection && git checkout ${LIBINJECTION_CHECKSUM} && \
     cd /usr/src/nginx && \
     CONFARGS=$(nginx -V 2>&1 | sed -n -e 's/^.*arguments: //p') \
