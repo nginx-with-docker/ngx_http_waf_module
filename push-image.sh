@@ -2,7 +2,7 @@
 
 PROJECT_NAME="waf"
 REPO_NAME="soulteary/prebuilt-nginx-modules"
-RELEASE_DIR="./modules";
+RELEASE_DIR="./docker";
 
 for subVer in $RELEASE_DIR/*; do
     set -a
