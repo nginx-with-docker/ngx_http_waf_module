@@ -17,10 +17,18 @@ Handy, High performance Nginx firewall module.
     <tbody>
         <tr>
             <td>1.21.0</td>
+            <td>5.4.2</td>
+            <td><ul>
+                <li>docker pull soulteary/prebuilt-nginx-modules:ngx-1.21.0-waf-5.4.2</li>
+                <li>docker pull soulteary/prebuilt-nginx-modules:ngx-1.21.0-waf-5.4.2-alpine</li>
+            </ul></td>
+        </tr>
+        <tr>
+            <td>1.21.0</td>
             <td>5.4.1</td>
             <td><ul>
-                <li>docker pull soulteary/prebuilt-nginx-modules:waf-1.21.0</li>
-                <li>docker pull soulteary/prebuilt-nginx-modules:waf-1.21.0-alpine</li>
+                <li>docker pull soulteary/prebuilt-nginx-modules:ngx-1.21.0-waf-5.4.1</li>
+                <li>docker pull soulteary/prebuilt-nginx-modules:ngx-1.21.0-waf-5.4.1-alpine</li>
             </ul></td>
         </tr>
         <tr>
