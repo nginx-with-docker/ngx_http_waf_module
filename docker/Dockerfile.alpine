@@ -5,6 +5,7 @@ ARG MODULE_CHECKSUM=e0e2f1f41cc219c23e0e8a3b3ccae035af169593
 ARG MODULE_VERSION=5.4.1
 ARG MODULE_NAME=ngx-waf-module-src
 ARG MODULE_SOURCE=https://github.com/nginx-with-docker/ngx-waf-module-src
+ARG LIBINJECTION_CHECKSUM=49904c42a6e68dc8f16c022c693e897e4010a06c
 
 RUN apk add uthash-dev git libsodium libsodium-dev
 RUN cd /usr/src && \
