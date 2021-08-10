@@ -6,6 +6,7 @@ ARG MODULE_VERSION=5.4.1
 ARG MODULE_NAME=ngx-waf-module-src
 ARG MODULE_SOURCE=https://github.com/nginx-with-docker/ngx-waf-module-src
 ARG LIBINJECTION_CHECKSUM=49904c42a6e68dc8f16c022c693e897e4010a06c
+ARG LIBSODIUM_CHECKSUM=a016aea61214668827e18c6278ac25b0bbc98ca5
 
 RUN apk add uthash-dev git libsodium libsodium-dev
 RUN cd /usr/src && \
@@ -13,12 +14,11 @@ RUN cd /usr/src && \
     echo "${MODULE_CHECKSUM}  v${MODULE_VERSION}.tar.gz" | shasum -c && \
     tar -zxC /usr/src -f v${MODULE_VERSION}.tar.gz && \
     cd /usr/src && \
-    git clone https://github.com/jedisct1/libsodium.git --branch stable libsodium-src && \
-    cd libsodium-src && \
+    git clone https://github.com/nginx-with-docker/module-deps-libsodium.git --branch stable libsodium && \
+    cd libsodium && \
+    git checkout ${LIBSODIUM_CHECKSUM} && \
     ./configure --prefix=/usr/src/libsodium --with-pic && \
-    make -j$(nproc) && \
-    make check -j $(nproc) && \
-    make install && \
+    make -j$(nproc) && make check -j $(nproc) && make install && \
     cd /usr/src && \
     mv ${MODULE_NAME}-${MODULE_VERSION}/ ${MODULE_NAME} && \
     git clone https://github.com/nginx-with-docker/module-deps-libinjection.git ${MODULE_NAME}/inc/libinjection && \
