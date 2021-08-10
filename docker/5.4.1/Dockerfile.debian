@@ -14,11 +14,19 @@ RUN cd /usr/src && \
     echo "${MODULE_CHECKSUM}  v${MODULE_VERSION}.tar.gz" | shasum -c && \
     tar -zxC /usr/src -f v${MODULE_VERSION}.tar.gz && \
     cd /usr/src && \
+    git clone https://github.com/jedisct1/libsodium.git --branch stable libsodium-src && \
+    cd libsodium-src && \
+    ./configure --prefix=/usr/src/libsodium --with-pic && \
+    make -j$(nproc) && \
+    make check -j $(nproc) && \
+    make install && \
+    cd /usr/src && \
     mv ${MODULE_NAME}-${MODULE_VERSION}/ ${MODULE_NAME} && \
     git clone https://github.com/nginx-with-docker/module-deps-libinjection.git ${MODULE_NAME}/inc/libinjection && \
     cd ${MODULE_NAME}/inc/libinjection && git checkout ${LIBINJECTION_CHECKSUM} && \
     cd /usr/src/nginx && \
     echo $CONFARGS && \
+    export LIB_SODIUM=/usr/src/libsodium && \
     ./configure --with-compat $CONFARGS --add-dynamic-module=../${MODULE_NAME}/ && \
     make modules
 
