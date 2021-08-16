@@ -1,0 +1,8 @@
+ARG NGINX_VERSION=stable
+ARG MODULE_VERSION=lts
+FROM addsp/ngx_waf-prebuild:ngx-${NGINX_VERSION}-module-${MODULE_VERSION}-musl AS Builder
+
+FROM scratch
+ARG NGINX_VERSION=stable
+ARG MODULE_VERSION=lts
+COPY --from=Builder /modules/ngx_http_waf_module.so /
